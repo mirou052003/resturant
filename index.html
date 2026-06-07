@@ -25,7 +25,20 @@ header{background:linear-gradient(135deg,#C44D03,#E85D04);color:#fff;padding:0 1
 header h1{font-size:17px;font-weight:900;cursor:default;user-select:none;display:flex;align-items:center;gap:7px}
 #store-banner{width:100%;max-height:220px;object-fit:cover;display:none}
 
-/* STATUS BADGE */
+/* WELCOME CARD */
+.welcome-card{position:relative;overflow:hidden;margin:0;display:none}
+.welcome-bg{width:100%;height:220px;object-fit:cover;display:block}
+.welcome-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.2) 60%,transparent 100%)}
+.welcome-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:20px;text-align:center;color:#fff}
+.welcome-logo{width:72px;height:72px;border-radius:50%;border:3px solid rgba(255,255,255,.8);object-fit:cover;box-shadow:0 4px 20px rgba(0,0,0,.4);margin-bottom:10px;display:none}
+.welcome-name{font-size:22px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.5);line-height:1.2}
+.welcome-subtitle{font-size:13px;opacity:.88;margin-top:4px;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.welcome-simple{background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:28px 20px;text-align:center;color:#fff;display:none}
+.welcome-simple .ws-logo{width:70px;height:70px;border-radius:50%;border:3px solid rgba(255,255,255,.7);object-fit:cover;margin-bottom:12px;display:none}
+.welcome-simple .ws-name{font-size:22px;font-weight:900}
+.welcome-simple .ws-sub{font-size:13px;opacity:.85;margin-top:4px}
+
+
 .status-open{background:#DCFCE7;color:#15803D;border-radius:50px;padding:4px 14px;font-size:12px;font-weight:700;display:inline-block}
 .status-closed{background:#FEF2F2;color:#EF4444;border-radius:50px;padding:4px 14px;font-size:12px;font-weight:700;display:inline-block}
 
@@ -135,73 +148,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary)
 .fb-badge.err{background:#FEF2F2;color:#EF4444}
 .fb-badge.load{background:#FFF7ED;color:#D97706}
 
-/* HERO BACKGROUND */
-#store-hero{
-  position:relative;width:100%;min-height:220px;
-  display:flex;align-items:flex-end;overflow:hidden;
-}
-#store-hero-bg{
-  position:absolute;inset:0;background-size:cover;background-position:center;
-  transition:.4s;
-}
-#store-hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,.15) 0%, rgba(0,0,0,.65) 100%);
-}
-#store-hero-content{
-  position:relative;z-index:1;padding:20px 16px;width:100%;color:#fff;
-}
-#store-hero-name{font-size:24px;font-weight:900;margin-bottom:4px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
-#store-hero-slogan{font-size:13px;opacity:.88;margin-bottom:10px}
-#store-hero-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:50px;font-size:11px;font-weight:700;backdrop-filter:blur(8px)}
-.hero-badge-open{background:rgba(34,197,94,.25);border:1px solid rgba(34,197,94,.5);color:#DCFCE7}
-.hero-badge-closed{background:rgba(239,68,68,.25);border:1px solid rgba(239,68,68,.5);color:#FECACA}
-.hero-badge-time{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff}
-.hero-badge-delivery{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff}
-
-/* INFO BAR (under hero) */
-#store-info-bar{
-  background:#fff;border-bottom:1.5px solid var(--gray-200);
-  padding:10px 16px;display:none;gap:14px;flex-wrap:wrap;
-  font-size:12px;font-weight:700;color:var(--gray-600);
-  align-items:center;
-}
-.info-bar-item{display:flex;align-items:center;gap:5px}
-
-/* STORE BG IMG */
-body.has-store-bg{background:#FFF8F0}
-#welcome-card{display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;padding:20px}
-#welcome-card.show{display:flex}
-.wc-overlay{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px)}
-.wc-box{
-  position:relative;z-index:1;
-  background:#fff;border-radius:24px;
-  max-width:380px;width:100%;
-  overflow:hidden;
-  box-shadow:0 24px 64px rgba(0,0,0,.4);
-  animation:wcPop .45s cubic-bezier(.34,1.56,.64,1) both
-}
-@keyframes wcPop{from{transform:scale(.7) translateY(30px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
-.wc-img-wrap{position:relative;width:100%;height:200px;overflow:hidden;background:var(--primary-light)}
-.wc-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.wc-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px;background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
-.wc-gradient{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(0,0,0,.55))}
-.wc-body{padding:20px 22px 22px}
-.wc-name{font-size:22px;font-weight:900;color:var(--gray-800);margin-bottom:5px;text-align:center}
-.wc-welcome-text{font-size:14px;color:var(--gray-600);text-align:center;margin-bottom:8px;line-height:1.6}
-.wc-status{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;margin-bottom:16px}
-.wc-status.open{background:#DCFCE7;color:#15803D}
-.wc-status.closed{background:#FEF2F2;color:#EF4444}
-.wc-enter-btn{
-  width:100%;padding:13px;border:none;border-radius:12px;
-  cursor:pointer;font-size:15px;font-weight:900;
-  font-family:'Cairo',sans-serif;color:#fff;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:.2s;box-shadow:0 4px 16px rgba(0,0,0,.2)
-}
-.wc-enter-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-
 @media(max-width:480px){
   .two-col{grid-template-columns:1fr}
   .prod-grid{grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}
@@ -216,28 +162,6 @@ body.has-store-bg{background:#FFF8F0}
   <p>جاري تحميل المطعم...</p>
 </div>
 
-<!-- بطاقة الترحيب -->
-<div id="welcome-card">
-  <div class="wc-overlay" onclick="enterStore()"></div>
-  <div class="wc-box">
-    <div class="wc-img-wrap">
-      <div class="wc-img-placeholder" id="wc-img-placeholder">🍽️</div>
-      <img id="wc-img" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-      <div class="wc-gradient"></div>
-    </div>
-    <div class="wc-body">
-      <div class="wc-name" id="wc-name">مطعمنا</div>
-      <div class="wc-welcome-text" id="wc-welcome-text">أهلاً وسهلاً بكم 👋<br>اطلب من أشهى الوجبات بكل سهولة</div>
-      <div style="display:flex;justify-content:center;margin-bottom:16px">
-        <span class="wc-status open" id="wc-status">🟢 المطعم مفتوح</span>
-      </div>
-      <button class="wc-enter-btn" id="wc-enter-btn" onclick="enterStore()">
-        🍽️ تصفح القائمة
-      </button>
-    </div>
-  </div>
-</div>
-
 <!-- صفحة الزبون -->
 <div id="store-page" style="display:none">
   <header id="store-header">
@@ -248,26 +172,24 @@ body.has-store-bg{background:#FFF8F0}
       <span id="store-status-badge" class="status-open">🟢 مفتوح</span>
     </div>
   </header>
+  <img id="store-banner" src="" alt="banner">
 
-  <!-- Hero Section -->
-  <div id="store-hero">
-    <div id="store-hero-bg"></div>
-    <div id="store-hero-overlay"></div>
-    <div id="store-hero-content">
-      <div id="store-hero-name">مطعمنا</div>
-      <div id="store-hero-slogan">أشهى الوجبات — توصيل سريع</div>
-      <div id="store-hero-meta">
-        <span class="hero-badge hero-badge-open" id="hero-status-badge">🟢 مفتوح الآن</span>
-        <span class="hero-badge hero-badge-time" id="hero-time-badge" style="display:none">🕐 ساعات العمل</span>
-        <span class="hero-badge hero-badge-delivery" id="hero-delivery-badge" style="display:none">🚚 التوصيل</span>
+  <!-- بطاقة ترحيبية -->
+  <div id="hero-card" style="position:relative;overflow:hidden;min-height:200px;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px 20px">
+    <img id="hero-bg-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,77,3,.82),rgba(232,93,4,.7));z-index:1"></div>
+    <div style="position:relative;z-index:2;color:#fff">
+      <div id="hero-logo-wrap" style="margin-bottom:12px;display:none">
+        <img id="hero-logo" src="" alt="" style="width:80px;height:80px;border-radius:50%;border:3px solid rgba(255,255,255,.7);object-fit:cover;box-shadow:0 4px 20px rgba(0,0,0,.3)">
+      </div>
+      <div style="font-size:28px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:6px" id="hero-name">🍕 مطعمنا</div>
+      <div style="font-size:13px;opacity:.9;font-weight:600;margin-bottom:12px" id="hero-slogan">أشهى الوجبات — توصيل سريع</div>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <div style="background:rgba(255,255,255,.18);border-radius:50px;padding:6px 16px;font-size:12px;font-weight:700;backdrop-filter:blur(4px)">🚀 توصيل سريع</div>
+        <div style="background:rgba(255,255,255,.18);border-radius:50px;padding:6px 16px;font-size:12px;font-weight:700;backdrop-filter:blur(4px)">⭐ جودة عالية</div>
+        <div style="background:rgba(255,255,255,.18);border-radius:50px;padding:6px 16px;font-size:12px;font-weight:700;backdrop-filter:blur(4px)" id="hero-status-tag">🟢 مفتوح الآن</div>
       </div>
     </div>
-  </div>
-
-  <!-- Info Bar -->
-  <div id="store-info-bar">
-    <div class="info-bar-item" id="info-hours" style="display:none">⏰ <span id="info-hours-text"></span></div>
-    <div class="info-bar-item" id="info-delivery" style="display:none">🚚 <span id="info-delivery-text"></span></div>
   </div>
 
   <div class="cats-row" id="cats-row">
@@ -311,26 +233,20 @@ body.has-store-bg{background:#FFF8F0}
       <span>📋 تفاصيل التوصيل</span>
       <button class="close-btn" onclick="closeModal('modal-order')">✕</button>
     </div>
+    <!-- الولاية تظهر تلقائياً من الإعدادات -->
+    <div id="order-wilaya-display" style="background:var(--primary-light);border:1.5px solid rgba(232,93,4,.2);border-radius:9px;padding:10px 13px;margin-bottom:4px;display:none">
+      <div style="font-size:11px;font-weight:700;color:var(--gray-600);margin-bottom:3px">📍 الولايات التي نعمل فيها</div>
+      <div id="order-wilaya-tags" style="display:flex;flex-wrap:wrap;gap:5px"></div>
+    </div>
     <label>اسمك الكامل <span style="color:var(--red)">*</span></label>
     <input type="text" id="order-name" placeholder="مثال: أحمد بن علي">
     <label>رقم الهاتف <span style="color:var(--red)">*</span></label>
     <input type="tel" id="order-phone" placeholder="0770 000 000" dir="ltr">
-    <label>الولاية <span style="color:var(--red)">*</span></label>
-    <select id="order-wilaya">
-      <option value="">— اختر الولاية —</option>
-      <option>أدرار</option><option>الشلف</option><option>الأغواط</option><option>أم البواقي</option>
-      <option>باتنة</option><option>بجاية</option><option>بسكرة</option><option>بشار</option>
-      <option>البليدة</option><option>البويرة</option><option>تمنراست</option><option>تبسة</option>
-      <option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option><option>الجزائر العاصمة</option>
-      <option>الجلفة</option><option>جيجل</option><option>سطيف</option><option>سعيدة</option>
-      <option>سكيكدة</option><option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
-      <option>قسنطينة</option><option>المدية</option><option>مستغانم</option><option>المسيلة</option>
-      <option>معسكر</option><option>ورقلة</option><option>وهران</option><option>البيض</option>
-      <option>إليزي</option><option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
-      <option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option><option>خنشلة</option>
-      <option>سوق أهراس</option><option>تيبازة</option><option>ميلة</option><option>عين الدفلى</option>
-      <option>النعامة</option><option>عين تيموشنت</option><option>غرداية</option><option>غليزان</option>
-    </select>
+    <!-- إذا أكثر من ولاية واحدة يختار الزبون -->
+    <div id="order-wilaya-select-wrap" style="display:none">
+      <label>الولاية <span style="color:var(--red)">*</span></label>
+      <select id="order-wilaya-select"></select>
+    </div>
     <label>العنوان التفصيلي <span style="color:var(--red)">*</span></label>
     <input type="text" id="order-address" placeholder="حي النصر، شارع الاستقلال...">
     <label>ملاحظة (اختياري)</label>
@@ -435,79 +351,34 @@ body.has-store-bg{background:#FFF8F0}
           <label>اسم المطعم</label><input type="text" id="s-name" placeholder="مطعم الأصالة">
           <label>الشعار الفرعي</label><input type="text" id="s-slogan" placeholder="أشهى الوجبات — توصيل سريع">
         </div>
-
-        <!-- صورة خلفية المطعم -->
         <div class="card">
-          <div class="card-title">🖼️ صورة خلفية المطعم (Hero)</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px">تظهر كخلفية كبيرة في أعلى الموقع مع اسم المطعم</div>
-          <label>رابط الصورة</label>
-          <input type="text" id="s-hero-img" placeholder="https://..." oninput="previewHeroImg(this.value)">
-          <img id="s-hero-preview" style="width:100%;max-height:130px;object-fit:cover;border-radius:10px;margin-top:8px;display:none;border:1.5px solid var(--gray-200)">
-          <label style="margin-top:12px">ارتفاع قسم الـ Hero</label>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-            <button class="cur-btn" data-height="160px" onclick="pickHeroHeight(this)">صغير</button>
-            <button class="cur-btn active" data-height="220px" onclick="pickHeroHeight(this)">متوسط</button>
-            <button class="cur-btn" data-height="300px" onclick="pickHeroHeight(this)">كبير</button>
-            <button class="cur-btn" data-height="380px" onclick="pickHeroHeight(this)">ضخم</button>
-          </div>
-        </div>
-
-        <!-- أوقات العمل -->
-        <div class="card">
-          <div class="card-title">⏰ أوقات العمل</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px">تظهر على بطاقة الترحيب وفي أعلى الموقع</div>
-          <label>وقت الفتح</label>
-          <input type="text" id="s-open-time" placeholder="مثال: 11:00">
-          <label>وقت الإغلاق</label>
-          <input type="text" id="s-close-time" placeholder="مثال: 21:30">
-          <label>أيام العمل</label>
-          <input type="text" id="s-work-days" placeholder="مثال: يومياً أو السبت إلى الخميس">
-          <div style="margin-top:10px;background:rgba(255,255,255,.06);border-radius:8px;padding:10px;font-size:12px;color:rgba(255,255,255,.6)" id="hours-preview-text">
-            معاينة: <span id="hours-preview">من 11:00 إلى 21:30 — يومياً</span>
-          </div>
-        </div>
-
-        <!-- مناطق التوصيل -->
-        <div class="card">
-          <div class="card-title">🚚 مناطق التوصيل</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px">تظهر للزبون في أعلى الموقع وعند الطلب</div>
-          <label>نص منطقة التوصيل</label>
-          <input type="text" id="s-delivery-zone" placeholder="مثال: داخل بلدية بسكرة فقط">
-          <label>سعر التوصيل (اتركه فارغاً إن كان مجاناً)</label>
-          <input type="text" id="s-delivery-price" placeholder="مثال: 200 دج أو مجاناً">
-          <label>الحد الأدنى للطلب</label>
-          <input type="text" id="s-min-order" placeholder="مثال: 500 دج">
-          <div style="margin-top:10px;background:rgba(255,255,255,.06);border-radius:8px;padding:10px;font-size:12px;color:rgba(255,255,255,.6)">
-            معاينة: <span id="delivery-preview">توصيل داخل بلدية بسكرة فقط</span>
-          </div>
-        </div>
-        <!-- بطاقة الترحيب -->
-        <div class="card">
-          <div class="card-title">🎴 بطاقة الترحيب</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px">تظهر للزبون عند دخول الموقع لأول مرة</div>
+          <div class="card-title">🖼️ البطاقة الترحيبية</div>
           <label>نص الترحيب</label>
-          <input type="text" id="s-wc-text" placeholder="أهلاً وسهلاً بكم 👋">
-          <label>نص زر الدخول</label>
-          <input type="text" id="s-wc-btn" placeholder="🍽️ تصفح القائمة">
-          <label>صورة البطاقة (رابط)</label>
-          <input type="text" id="s-wc-img" placeholder="https://..." oninput="previewWcImg(this.value)">
-          <img id="s-wc-img-preview" style="width:100%;max-height:120px;object-fit:cover;border-radius:10px;margin-top:8px;display:none;border:1.5px solid var(--gray-200)">
-          <label>إيموجي البطاقة (إذا لم تضف صورة)</label>
-          <input type="text" id="s-wc-emoji" placeholder="🍽️" maxlength="4">
-          <label>لون زر الدخول</label>
-          <div class="color-row" id="wc-btn-colors" style="margin-top:6px">
-            <div class="color-swatch active" style="background:linear-gradient(135deg,#C44D03,#E85D04)" data-val="linear-gradient(135deg,#C44D03,#E85D04)" onclick="pickWcBtnColor(this)"></div>
-            <div class="color-swatch" style="background:linear-gradient(135deg,#1245A8,#1A5CDB)" data-val="linear-gradient(135deg,#1245A8,#1A5CDB)" onclick="pickWcBtnColor(this)"></div>
-            <div class="color-swatch" style="background:linear-gradient(135deg,#065F46,#059669)" data-val="linear-gradient(135deg,#065F46,#059669)" onclick="pickWcBtnColor(this)"></div>
-            <div class="color-swatch" style="background:linear-gradient(135deg,#7C3AED,#A855F7)" data-val="linear-gradient(135deg,#7C3AED,#A855F7)" onclick="pickWcBtnColor(this)"></div>
-            <div class="color-swatch" style="background:linear-gradient(135deg,#9F1239,#E11D48)" data-val="linear-gradient(135deg,#9F1239,#E11D48)" onclick="pickWcBtnColor(this)"></div>
-            <div class="color-swatch" style="background:linear-gradient(135deg,#0F172A,#334155)" data-val="linear-gradient(135deg,#0F172A,#334155)" onclick="pickWcBtnColor(this)"></div>
+          <input type="text" id="s-welcome" placeholder="أهلاً وسهلاً بكم في مطعمنا 🎉">
+          <label>صورة الخلفية — ارفع من المعرض</label>
+          <div class="img-upload-area" id="upload-area-hero-bg">
+            <input type="file" id="hero-bg-file" accept="image/*" onchange="previewImage(this,'preview-hero-bg','upload-area-hero-bg')">
+            <div id="upload-area-hero-bg-content">
+              <div style="font-size:28px;margin-bottom:4px">🖼️</div>
+              <div style="font-size:12px;font-weight:700;color:var(--gray-600)">اضغط لرفع صورة الخلفية</div>
+            </div>
+            <img id="preview-hero-bg" class="img-preview" src="" alt="">
           </div>
-          <label style="margin-top:14px">إظهار البطاقة عند كل زيارة؟</label>
-          <div style="display:flex;gap:8px;margin-top:4px">
-            <button class="cur-btn active" id="wc-always-yes" onclick="setWcAlways(true,this)">✅ دائماً</button>
-            <button class="cur-btn" id="wc-always-no" onclick="setWcAlways(false,this)">❌ مرة واحدة فقط</button>
+          <div class="upload-progress" id="progress-hero-bg"><div class="upload-progress-bar" id="progress-bar-hero-bg"></div></div>
+          <label style="margin-top:10px">أو رابط URL للخلفية</label>
+          <input type="text" id="s-hero-bg" placeholder="https://i.ibb.co/...">
+          <label>شعار المطعم (دائري) — ارفع من المعرض</label>
+          <div class="img-upload-area" id="upload-area-hero-logo">
+            <input type="file" id="hero-logo-file" accept="image/*" onchange="previewImage(this,'preview-hero-logo','upload-area-hero-logo')">
+            <div id="upload-area-hero-logo-content">
+              <div style="font-size:28px;margin-bottom:4px">🏷️</div>
+              <div style="font-size:12px;font-weight:700;color:var(--gray-600)">اضغط لرفع شعار المطعم</div>
+            </div>
+            <img id="preview-hero-logo" class="img-preview" src="" alt="" style="border-radius:50%;width:80px;height:80px;margin:8px auto">
           </div>
+          <div class="upload-progress" id="progress-hero-logo"><div class="upload-progress-bar" id="progress-bar-hero-logo"></div></div>
+          <label style="margin-top:10px">أو رابط URL للشعار</label>
+          <input type="text" id="s-hero-logo" placeholder="https://i.ibb.co/...">
         </div>
         <div class="card">
           <div class="card-title">🖼️ صورة البانر</div>
@@ -515,7 +386,22 @@ body.has-store-bg{background:#FFF8F0}
           <input type="text" id="s-banner" placeholder="https://i.ibb.co/...">
         </div>
         <div class="card">
-          <div class="card-title">🟢 حالة المطعم</div>
+          <div class="card-title">📍 الولايات التي تعمل فيها</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:10px">اختر ولاية واحدة أو أكثر — ستظهر للزبون تلقائياً عند الطلب</div>
+          <div id="wilaya-checkboxes" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;max-height:240px;overflow-y:auto;padding:4px"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">🕐 ساعات العمل (إغلاق تلقائي)</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:10px">المطعم يُغلق تلقائياً خارج هذه الأوقات</div>
+          <div class="two-col">
+            <div><label>وقت الفتح</label><input type="time" id="s-open-time" value="08:00" style="direction:ltr"></div>
+            <div><label>وقت الإغلاق</label><input type="time" id="s-close-time" value="23:00" style="direction:ltr"></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+            <input type="checkbox" id="s-auto-close" style="width:18px;height:18px;cursor:pointer">
+            <label for="s-auto-close" style="margin:0;cursor:pointer;color:rgba(255,255,255,.7)">تفعيل الإغلاق التلقائي حسب الوقت</label>
+          </div>
+        </div>
           <div style="display:flex;gap:10px;margin-top:6px">
             <button class="cur-btn active" id="btn-open" onclick="setStatus('open',this)">🟢 مفتوح</button>
             <button class="cur-btn" id="btn-closed" onclick="setStatus('closed',this)">🔴 مغلق</button>
@@ -629,28 +515,20 @@ const ADMIN_PASS_DEFAULT = "essadek650";
 const PASS_KEY           = "restaurant_admin_pass";
 
 const DEFAULT_SETTINGS = {
-  storeName    : "مطعمنا",
-  slogan       : "أشهى الوجبات — توصيل سريع",
-  banner       : "",
-  heroImg      : "",
-  heroHeight   : "220px",
-  openTime     : "11:00",
-  closeTime    : "21:30",
-  workDays     : "يومياً",
-  deliveryZone : "داخل بلدية بسكرة فقط",
-  deliveryPrice: "200 دج",
-  minOrder     : "500 دج",
-  waNumber     : "213781278122",
-  headerBg     : "linear-gradient(135deg,#C44D03,#E85D04)",
-  currency     : "دج",
-  isOpen       : true,
-  wcText       : "أهلاً وسهلاً بكم 👋\nاطلب من أشهى الوجبات بكل سهولة",
-  wcBtnText    : "🍽️ تصفح القائمة",
-  wcImg        : "",
-  wcEmoji      : "🍽️",
-  wcBtnBg      : "linear-gradient(135deg,#C44D03,#E85D04)",
-  wcAlways     : true
+  storeName  : "مطعمنا",
+  slogan     : "أشهى الوجبات — توصيل سريع",
+  banner     : "",
+  waNumber   : "213781278122",
+  headerBg   : "linear-gradient(135deg,#C44D03,#E85D04)",
+  currency   : "دج",
+  isOpen     : true,
+  wilayas    : ["بسكرة"],
+  openTime   : "08:00",
+  closeTime  : "23:00",
+  autoClose  : false
 };
+
+const ALL_WILAYAS = ["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر العاصمة","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تيموشنت","غرداية","غليزان","تيميمون","برج باجي مختار","أولاد جلال","بني عباس","عين صالح","عين قزام","تقرت","جانت","المغير","المنيعة"];
 
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
@@ -718,18 +596,9 @@ async function init(){
     if(snap.exists()) settings={...DEFAULT_SETTINGS,...snap.data()};
   }catch(e){}
   applySettings();
+  checkAutoClose();
   document.getElementById('loading-screen').style.display='none';
-  if(window.location.hash==='#admin'){
-    showLoginPage();
-  } else {
-    showStorePage();
-    // أظهر البطاقة الترحيبية
-    const alwaysShow = settings.wcAlways !== false;
-    const alreadySeen = sessionStorage.getItem('wc_seen');
-    if(alwaysShow || !alreadySeen){
-      showWelcomeCard();
-    }
-  }
+  window.location.hash==='#admin' ? showLoginPage() : showStorePage();
 }
 
 function listenProducts(cb){
@@ -776,84 +645,18 @@ window.goToStore=()=>showStorePage();
 // تطبيق الإعدادات
 // =============================================
 function applySettings(){
-  // اسم المطعم
-  document.getElementById('store-name-display').textContent = settings.storeName||'مطعمنا';
-  document.getElementById('store-hero-name').textContent    = settings.storeName||'مطعمنا';
-  document.getElementById('store-hero-slogan').textContent  = settings.slogan||'';
-  document.title = settings.storeName||'مطعم';
-
-  // هيدر
-  document.getElementById('store-header').style.background = settings.headerBg;
-
-  // Hero صورة الخلفية
-  const heroBg = document.getElementById('store-hero-bg');
-  const hero   = document.getElementById('store-hero');
-  if(settings.heroImg){
-    heroBg.style.backgroundImage = `url('${settings.heroImg}')`;
-    hero.style.minHeight = settings.heroHeight||'220px';
-    hero.style.display = 'flex';
-  } else {
-    heroBg.style.backgroundImage = settings.headerBg.includes('gradient')
-      ? settings.headerBg : `linear-gradient(135deg,#C44D03,#E85D04)`;
-    hero.style.minHeight = settings.heroHeight||'220px';
-    hero.style.display = 'flex';
+  document.getElementById('store-name-display').textContent=(settings.storeName||'مطعمنا');
+  document.getElementById('store-header').style.background=settings.headerBg;
+  document.body.style.background=settings.isOpen?'#FFF8F0':'#F8FAFC';
+  document.title=settings.storeName||'مطعم';
+  const banner=document.getElementById('store-banner');
+  if(settings.banner){banner.src=settings.banner;banner.style.display='block';}
+  else banner.style.display='none';
+  const badge=document.getElementById('store-status-badge');
+  if(badge){
+    badge.textContent=settings.isOpen?'🟢 مفتوح':'🔴 مغلق';
+    badge.className=settings.isOpen?'status-open':'status-closed';
   }
-
-  // أوقات العمل
-  const openT  = settings.openTime||'';
-  const closeT = settings.closeTime||'';
-  const days   = settings.workDays||'';
-  const timeBadge = document.getElementById('hero-time-badge');
-  const infoHours = document.getElementById('info-hours');
-  if(openT && closeT){
-    const timeStr = `${openT} – ${closeT}${days?' | '+days:''}`;
-    timeBadge.textContent = `🕐 ${timeStr}`;
-    timeBadge.style.display = 'inline-flex';
-    document.getElementById('info-hours-text').textContent = timeStr;
-    infoHours.style.display = 'flex';
-  } else {
-    timeBadge.style.display = 'none';
-    infoHours.style.display = 'none';
-  }
-
-  // مناطق التوصيل
-  const zone      = settings.deliveryZone||'';
-  const dPrice    = settings.deliveryPrice||'';
-  const minOrder  = settings.minOrder||'';
-  const delBadge  = document.getElementById('hero-delivery-badge');
-  const infoDelivery = document.getElementById('info-delivery');
-  if(zone){
-    const delStr = zone + (dPrice ? ` — ${dPrice}` : '') + (minOrder ? ` | حد أدنى: ${minOrder}` : '');
-    delBadge.textContent = `🚚 ${zone}`;
-    delBadge.style.display = 'inline-flex';
-    document.getElementById('info-delivery-text').textContent = delStr;
-    infoDelivery.style.display = 'flex';
-    document.getElementById('store-info-bar').style.display = 'flex';
-  } else {
-    delBadge.style.display = 'none';
-    infoDelivery.style.display = 'none';
-  }
-
-  // شريط المعلومات
-  const infoBar = document.getElementById('store-info-bar');
-  infoBar.style.display = (openT||zone) ? 'flex' : 'none';
-
-  // حالة المطعم
-  const badge = document.getElementById('store-status-badge');
-  const heroBadge = document.getElementById('hero-status-badge');
-  if(settings.isOpen!==false){
-    if(badge){ badge.textContent='🟢 مفتوح'; badge.className='status-open'; }
-    if(heroBadge){ heroBadge.textContent='🟢 مفتوح الآن'; heroBadge.className='hero-badge hero-badge-open'; }
-    document.body.style.background='#FFF8F0';
-  } else {
-    if(badge){ badge.textContent='🔴 مغلق'; badge.className='status-closed'; }
-    if(heroBadge){ heroBadge.textContent='🔴 مغلق حالياً'; heroBadge.className='hero-badge hero-badge-closed'; }
-    document.body.style.background='#F8FAFC';
-  }
-
-  // banner قديم (نحتفظ للتوافق)
-  const bannerEl = document.getElementById('store-banner');
-  if(bannerEl) bannerEl.style.display='none';
 }
 
 // =============================================
@@ -1015,47 +818,58 @@ window.clearCart=function(){cart=[];updateCartBadge();renderCartModal();};
 
 window.proceedOrder=function(){
   if(!cart.length){showToast('⚠️ السلة فارغة!');return;}
-  // التحقق من الحد الأدنى للطلب
-  const minOrderStr = settings.minOrder||'';
-  const minOrderNum = parseInt(minOrderStr.replace(/[^\d]/g,''));
-  if(minOrderNum>0){
-    const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
-    if(total<minOrderNum){
-      const cur=settings.currency||'دج';
-      const remaining=(minOrderNum-total).toLocaleString();
-      showToast(`⚠️ الحد الأدنى ${minOrderNum.toLocaleString()} ${cur} — أضف ${remaining} ${cur} أكثر`);
-      // نضيف تنبيه في السلة
-      document.getElementById('cart-total-line').innerHTML=`
-        <div style="display:flex;justify-content:space-between;padding:12px 0 0;font-weight:900;font-size:15px">
-          <span>المجموع</span><span style="color:var(--primary)">${total.toLocaleString()} ${cur}</span>
-        </div>
-        <div style="background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:12px;font-weight:700;color:#C2410C;display:flex;gap:7px;align-items:center">
-          ⚠️ الحد الأدنى للطلب <strong>${minOrderNum.toLocaleString()} ${cur}</strong> — باقي <strong>${remaining} ${cur}</strong>
-        </div>`;
-      return;
-    }
-  }
   closeModal('modal-cart');
   ['order-name','order-phone','order-address','order-note'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('order-wilaya').value='';
+
+  // عرض الولايات
+  const wilayas = settings.wilayas||[];
+  const displayEl = document.getElementById('order-wilaya-display');
+  const tagsEl = document.getElementById('order-wilaya-tags');
+  const selectWrap = document.getElementById('order-wilaya-select-wrap');
+  const selectEl = document.getElementById('order-wilaya-select');
+
+  if(wilayas.length>0){
+    displayEl.style.display='block';
+    tagsEl.innerHTML=wilayas.map(w=>`<span style="background:var(--primary);color:#fff;border-radius:50px;padding:3px 12px;font-size:12px;font-weight:700">${w}</span>`).join('');
+  } else {
+    displayEl.style.display='none';
+  }
+
+  if(wilayas.length>1){
+    selectWrap.style.display='block';
+    selectEl.innerHTML=`<option value="">— اختر ولايتك —</option>`+wilayas.map(w=>`<option value="${w}">${w}</option>`).join('');
+  } else {
+    selectWrap.style.display='none';
+  }
+
   document.getElementById('modal-order').classList.add('open');
 };
 
 window.sendOrderWhatsapp=function(){
   const name=document.getElementById('order-name').value.trim();
   const phone=document.getElementById('order-phone').value.trim();
-  const wilaya=document.getElementById('order-wilaya').value;
   const address=document.getElementById('order-address').value.trim();
   const note=document.getElementById('order-note').value.trim();
-  if(!name||!phone||!wilaya||!address){showToast('⚠️ يرجى ملء جميع الحقول');return;}
+
+  // تحديد الولاية
+  const wilayas=settings.wilayas||[];
+  let wilaya='';
+  if(wilayas.length===1){
+    wilaya=wilayas[0];
+  } else if(wilayas.length>1){
+    wilaya=document.getElementById('order-wilaya-select').value;
+    if(!wilaya){showToast('⚠️ اختر ولايتك');return;}
+  }
+
+  if(!name||!phone||!address){showToast('⚠️ يرجى ملء جميع الحقول');return;}
   const cur=settings.currency||'دج';
   const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  let msg=`🍽️ *طلب جديد — ${settings.storeName||'المطعم'}*\n━━━━━━━━━━━━━━━\n`;
+  let msg=`🍽️ *طلب جديد*\n━━━━━━━━━━━━━━━\n`;
   cart.forEach(i=>msg+=`${i.emoji} ${i.name} × ${i.qty} = ${(i.price*i.qty).toLocaleString()} ${cur}\n`);
   msg+=`━━━━━━━━━━━━━━━\n💰 *المجموع:* ${total.toLocaleString()} ${cur}\n`;
-  if(settings.deliveryPrice) msg+=`🚚 *التوصيل:* ${settings.deliveryPrice}\n`;
-  msg+=`━━━━━━━━━━━━━━━\n👤 *الاسم:* ${name}\n📞 *الهاتف:* ${phone}\n📍 *الولاية:* ${wilaya}\n🏠 *العنوان:* ${address}\n`;
-  if(settings.deliveryZone) msg+=`📌 *منطقة التوصيل:* ${settings.deliveryZone}\n`;
+  msg+=`━━━━━━━━━━━━━━━\n👤 *الاسم:* ${name}\n📞 *الهاتف:* ${phone}\n`;
+  if(wilaya) msg+=`📍 *الولاية:* ${wilaya}\n`;
+  msg+=`🏠 *العنوان:* ${address}\n`;
   if(note) msg+=`📝 *ملاحظة:* ${note}\n`;
   window.open(`https://wa.me/${settings.waNumber}?text=${encodeURIComponent(msg)}`,'_blank');
   closeModal('modal-order');
@@ -1181,63 +995,50 @@ window.saveEdit=async function(){
 // الإعدادات
 // =============================================
 function loadSettingsForm(){
-  document.getElementById('s-name').value      = settings.storeName||'';
-  document.getElementById('s-slogan').value    = settings.slogan||'';
-  document.getElementById('s-banner').value    = settings.banner||'';
-  document.getElementById('s-wa').value        = settings.waNumber||'';
-  // Hero
-  document.getElementById('s-hero-img').value  = settings.heroImg||'';
-  if(settings.heroImg){ document.getElementById('s-hero-preview').src=settings.heroImg; document.getElementById('s-hero-preview').style.display='block'; }
-  document.querySelectorAll('[data-height]').forEach(b=>b.classList.toggle('active',b.dataset.height===(settings.heroHeight||'220px')));
-  // أوقات العمل
-  document.getElementById('s-open-time').value  = settings.openTime||'';
-  document.getElementById('s-close-time').value = settings.closeTime||'';
-  document.getElementById('s-work-days').value  = settings.workDays||'';
-  updateHoursPreview();
-  // التوصيل
-  document.getElementById('s-delivery-zone').value  = settings.deliveryZone||'';
-  document.getElementById('s-delivery-price').value = settings.deliveryPrice||'';
-  document.getElementById('s-min-order').value      = settings.minOrder||'';
-  updateDeliveryPreview();
-  // بطاقة الترحيب
-  document.getElementById('s-wc-text').value  = (settings.wcText||'').replace(/\\n/g,'\n');
-  document.getElementById('s-wc-btn').value   = settings.wcBtnText||'';
-  document.getElementById('s-wc-img').value   = settings.wcImg||'';
-  document.getElementById('s-wc-emoji').value = settings.wcEmoji||'🍽️';
-  if(settings.wcImg){ document.getElementById('s-wc-img-preview').src=settings.wcImg; document.getElementById('s-wc-img-preview').style.display='block'; }
-  document.querySelectorAll('#wc-btn-colors .color-swatch').forEach(s=>s.classList.toggle('active',s.dataset.val===(settings.wcBtnBg||DEFAULT_SETTINGS.wcBtnBg)));
-  document.getElementById('wc-always-yes').classList.toggle('active',settings.wcAlways!==false);
-  document.getElementById('wc-always-no').classList.toggle('active',settings.wcAlways===false);
+  document.getElementById('s-name').value=settings.storeName||'';
+  document.getElementById('s-slogan').value=settings.slogan||'';
+  document.getElementById('s-banner').value=settings.banner||'';
+  document.getElementById('s-wa').value=settings.waNumber||'';
+  document.getElementById('s-hero-bg').value=settings.heroBg||'';
+  document.getElementById('s-hero-logo').value=settings.heroLogo||'';
+  document.getElementById('s-welcome').value=settings.welcome||'';
+  document.getElementById('s-open-time').value=settings.openTime||'08:00';
+  document.getElementById('s-close-time').value=settings.closeTime||'23:00';
+  document.getElementById('s-auto-close').checked=settings.autoClose||false;
   highlightSwatch('header-colors',settings.headerBg);
   document.querySelectorAll('.cur-btn[data-cur]').forEach(b=>b.classList.toggle('active',b.dataset.cur===(settings.currency||'دج')));
   document.getElementById('btn-open')?.classList.toggle('active',settings.isOpen!==false);
   document.getElementById('btn-closed')?.classList.toggle('active',settings.isOpen===false);
+  // بناء قائمة الولايات
+  const selected=settings.wilayas||[];
+  const container=document.getElementById('wilaya-checkboxes');
+  if(container){
+    container.innerHTML=ALL_WILAYAS.map(w=>`
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;background:rgba(255,255,255,.06);border-radius:8px;padding:7px 10px;font-size:12px;font-weight:700;color:#cbd5e1">
+        <input type="checkbox" value="${w}" ${selected.includes(w)?'checked':''} style="width:16px;height:16px;cursor:pointer;accent-color:var(--primary)">
+        ${w}
+      </label>`).join('');
+  }
 }
 
 window.saveSettings=async function(){
-  settings.storeName    = document.getElementById('s-name').value.trim()||'مطعمنا';
-  settings.slogan       = document.getElementById('s-slogan').value.trim();
-  settings.banner       = document.getElementById('s-banner').value.trim();
-  settings.waNumber     = document.getElementById('s-wa').value.trim()||DEFAULT_SETTINGS.waNumber;
-  // Hero
-  settings.heroImg      = document.getElementById('s-hero-img').value.trim();
-  // أوقات العمل
-  settings.openTime     = document.getElementById('s-open-time').value.trim();
-  settings.closeTime    = document.getElementById('s-close-time').value.trim();
-  settings.workDays     = document.getElementById('s-work-days').value.trim();
-  // التوصيل
-  settings.deliveryZone  = document.getElementById('s-delivery-zone').value.trim();
-  settings.deliveryPrice = document.getElementById('s-delivery-price').value.trim();
-  settings.minOrder      = document.getElementById('s-min-order').value.trim();
-  // بطاقة الترحيب
-  settings.wcText    = document.getElementById('s-wc-text').value.trim()||DEFAULT_SETTINGS.wcText;
-  settings.wcBtnText = document.getElementById('s-wc-btn').value.trim()||DEFAULT_SETTINGS.wcBtnText;
-  settings.wcImg     = document.getElementById('s-wc-img').value.trim();
-  settings.wcEmoji   = document.getElementById('s-wc-emoji').value.trim()||'🍽️';
+  settings.storeName=document.getElementById('s-name').value.trim()||'مطعمنا';
+  settings.slogan=document.getElementById('s-slogan').value.trim();
+  settings.banner=document.getElementById('s-banner').value.trim();
+  settings.waNumber=document.getElementById('s-wa').value.trim()||DEFAULT_SETTINGS.waNumber;
+  settings.heroBg=document.getElementById('s-hero-bg').value.trim();
+  settings.heroLogo=document.getElementById('s-hero-logo').value.trim();
+  settings.welcome=document.getElementById('s-welcome').value.trim();
+  settings.openTime=document.getElementById('s-open-time').value;
+  settings.closeTime=document.getElementById('s-close-time').value;
+  settings.autoClose=document.getElementById('s-auto-close').checked;
+  // جمع الولايات المختارة
+  const checked=document.querySelectorAll('#wilaya-checkboxes input[type=checkbox]:checked');
+  settings.wilayas=[...checked].map(c=>c.value);
   try{
     await setDoc(doc(db,"config","settings"),settings);
-    applySettings(); showToast('✅ تم حفظ الإعدادات');
-  }catch(e){ showToast('❌ '+e.message); }
+    applySettings();showToast('✅ تم حفظ الإعدادات');
+  }catch(e){showToast('❌ '+e.message);}
 };
 
 window.setStatus=function(status,el){
@@ -1296,104 +1097,6 @@ window.secretTap=function(){
   tapTimer=setTimeout(()=>tapCount=0,2000);
 };
 
-window.previewHeroImg = function(url){
-  const prev = document.getElementById('s-hero-preview');
-  if(url){ prev.src=url; prev.style.display='block'; }
-  else    { prev.style.display='none'; }
-};
-
-window.pickHeroHeight = function(el){
-  settings.heroHeight = el.dataset.height;
-  document.querySelectorAll('[data-height]').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('store-hero').style.minHeight = el.dataset.height;
-};
-
-function updateHoursPreview(){
-  const o = document.getElementById('s-open-time')?.value||'';
-  const c = document.getElementById('s-close-time')?.value||'';
-  const d = document.getElementById('s-work-days')?.value||'';
-  const el = document.getElementById('hours-preview');
-  if(el) el.textContent = (o&&c) ? `من ${o} إلى ${c}${d?' — '+d:''}` : '—';
-}
-function updateDeliveryPreview(){
-  const z  = document.getElementById('s-delivery-zone')?.value||'';
-  const p  = document.getElementById('s-delivery-price')?.value||'';
-  const m  = document.getElementById('s-min-order')?.value||'';
-  const el = document.getElementById('delivery-preview');
-  if(el) el.textContent = z ? `${z}${p?' | '+p:''}${m?' | حد أدنى '+m:''}` : '—';
-}
-
-// ربط المعاينة الفورية
-document.addEventListener('DOMContentLoaded', ()=>{
-  ['s-open-time','s-close-time','s-work-days'].forEach(id=>{
-    document.getElementById(id)?.addEventListener('input', updateHoursPreview);
-  });
-  ['s-delivery-zone','s-delivery-price','s-min-order'].forEach(id=>{
-    document.getElementById(id)?.addEventListener('input', updateDeliveryPreview);
-  });
-});
-
-// =============================================
-// بطاقة الترحيب
-// =============================================
-function showWelcomeCard(){
-  const s = settings;
-  // اسم المطعم
-  document.getElementById('wc-name').textContent = s.storeName||'مطعمنا';
-  // نص الترحيب
-  document.getElementById('wc-welcome-text').innerHTML = (s.wcText||'أهلاً وسهلاً بكم 👋').replace(/\n/g,'<br>');
-  // نص الزر
-  document.getElementById('wc-enter-btn').textContent = s.wcBtnText||'🍽️ تصفح القائمة';
-  // لون الزر
-  document.getElementById('wc-enter-btn').style.background = s.wcBtnBg||'linear-gradient(135deg,#C44D03,#E85D04)';
-  // الصورة أو الإيموجي
-  const img = document.getElementById('wc-img');
-  const placeholder = document.getElementById('wc-img-placeholder');
-  if(s.wcImg){
-    img.src = s.wcImg;
-    img.style.display = 'block';
-    placeholder.style.display = 'none';
-  } else {
-    img.style.display = 'none';
-    placeholder.style.display = 'flex';
-    placeholder.textContent = s.wcEmoji||'🍽️';
-  }
-  // حالة المطعم
-  const statusEl = document.getElementById('wc-status');
-  if(s.isOpen!==false){
-    statusEl.className='wc-status open';
-    statusEl.textContent='🟢 المطعم مفتوح';
-  } else {
-    statusEl.className='wc-status closed';
-    statusEl.textContent='🔴 المطعم مغلق حالياً';
-  }
-  document.getElementById('welcome-card').classList.add('show');
-}
-
-window.enterStore = function(){
-  document.getElementById('welcome-card').classList.remove('show');
-  if(!settings.wcAlways) sessionStorage.setItem('wc_seen','1');
-};
-
-window.previewWcImg = function(url){
-  const prev = document.getElementById('s-wc-img-preview');
-  if(url){ prev.src=url; prev.style.display='block'; }
-  else    { prev.style.display='none'; }
-};
-
-window.pickWcBtnColor = function(el){
-  settings.wcBtnBg = el.dataset.val;
-  document.querySelectorAll('#wc-btn-colors .color-swatch').forEach(s=>s.classList.remove('active'));
-  el.classList.add('active');
-};
-
-window.setWcAlways = function(val, el){
-  settings.wcAlways = val;
-  document.getElementById('wc-always-yes').classList.toggle('active', val===true);
-  document.getElementById('wc-always-no').classList.toggle('active', val===false);
-};
-
 // =============================================
 // مساعدات
 // =============================================
@@ -1409,6 +1112,25 @@ function showToast(msg){
   clearTimeout(t._tid);t._tid=setTimeout(()=>t.style.display='none',2500);
 }
 window.showToast=showToast;
+
+// =============================================
+// الإغلاق التلقائي حسب الوقت
+// =============================================
+function checkAutoClose(){
+  if(!settings.autoClose) return;
+  const now=new Date();
+  const hhmm=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  const open=settings.openTime||'08:00';
+  const close=settings.closeTime||'23:00';
+  const shouldBeOpen = hhmm>=open && hhmm<close;
+  if(settings.isOpen!==shouldBeOpen){
+    settings.isOpen=shouldBeOpen;
+    applySettings();
+    renderStore();
+  }
+}
+// تشغيل كل دقيقة
+setInterval(checkAutoClose,60000);
 
 init();
 </script>
