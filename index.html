@@ -485,7 +485,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary)
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, doc, onSnapshot, addDoc, updateDoc, deleteDoc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, doc, onSnapshot, addDoc, updateDoc, deleteDoc, setDoc, getDoc, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth, signInWithEmailAndPassword, signOut, updatePassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // =============================================
@@ -594,7 +594,21 @@ async function init(){
 
 function listenProducts(cb){
   if(unsubProds) unsubProds();
+  // الأدمين مسجّل دخوله: يجلب كل المنتجات (متاح وغير متاح)
   unsubProds = onSnapshot(collection(db,"menu"), snap=>{
+    products = snap.docs.map(d=>({fbId:d.id,...d.data()}));
+    products.sort((a,b)=>(a.order||0)-(b.order||0));
+    cb&&cb();
+    updateFbStatus(true);
+  }, ()=>updateFbStatus(false));
+}
+
+function listenProductsPublic(cb){
+  if(unsubProds) unsubProds();
+  // الزوار: يجب فلترة الاستعلام (available==1) لتطابق قاعدة الأمان
+  // وإلا يرفض Firestore طلب القراءة بالكامل
+  const q = query(collection(db,"menu"), where("available","==",1));
+  unsubProds = onSnapshot(q, snap=>{
     products = snap.docs.map(d=>({fbId:d.id,...d.data()}));
     products.sort((a,b)=>(a.order||0)-(b.order||0));
     cb&&cb();
@@ -628,7 +642,7 @@ function showStorePage(){
   document.getElementById('login-page').style.display='none';
   document.getElementById('admin-page').style.display='none';
   document.getElementById('store-page').style.display='block';
-  listenProducts(()=>{ renderStore(); buildCatsList(); });
+  listenProductsPublic(()=>{ renderStore(); buildCatsList(); });
 }
 window.goToStore=()=>showStorePage();
 
