@@ -435,8 +435,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary)
         </div>
         <div class="card">
           <div class="card-title">🔑 تغيير كلمة السر</div>
-          <label>كلمة السر الحالية</label>
-          <div style="position:relative"><input type="password" id="cp-old" placeholder="••••••••"><span onclick="togglePassField('cp-old')" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:15px;color:var(--gray-400)">👁</span></div>
           <label>كلمة السر الجديدة</label>
           <div style="position:relative"><input type="password" id="cp-new" placeholder="••••••••"><span onclick="togglePassField('cp-new')" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:15px;color:var(--gray-400)">👁</span></div>
           <label>تأكيد كلمة السر</label>
@@ -488,6 +486,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary)
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, doc, onSnapshot, addDoc, updateDoc, deleteDoc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, signOut, updatePassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // =============================================
 // إعدادات Firebase
@@ -507,13 +506,6 @@ const firebaseConfig = {
 const CLOUD_NAME   = "dfwergsfd";
 const UPLOAD_PRESET = "resturant_upload";
 
-// =============================================
-// إعدادات الأدمين
-// =============================================
-const ADMIN_EMAIL        = "essadek650@gmail.com";
-const ADMIN_PASS_DEFAULT = "essadek650";
-const PASS_KEY           = "restaurant_admin_pass";
-
 const DEFAULT_SETTINGS = {
   storeName  : "مطعمنا",
   slogan     : "أشهى الوجبات — توصيل سريع",
@@ -530,8 +522,9 @@ const DEFAULT_SETTINGS = {
 
 const ALL_WILAYAS = ["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر العاصمة","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تيموشنت","غرداية","غليزان","تيميمون","برج باجي مختار","أولاد جلال","بني عباس","عين صالح","عين قزام","تقرت","جانت","المغير","المنيعة"];
 
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
+const app  = initializeApp(firebaseConfig);
+const db   = getFirestore(app);
+const auth = getAuth(app);
 
 let products   = [];
 let settings   = {...DEFAULT_SETTINGS};
@@ -539,8 +532,6 @@ let cart       = [];
 let activeCat  = 'all';
 let unsubProds = null;
 let editImgUrl = null;
-
-function getCurrentPass(){ return localStorage.getItem(PASS_KEY)||ADMIN_PASS_DEFAULT; }
 
 // =============================================
 // رفع الصورة لـ Cloudinary
@@ -663,21 +654,28 @@ function applySettings(){
 // تسجيل الدخول
 // =============================================
 window.doLogin=function(){
-  const email=document.getElementById('login-email').value.trim().toLowerCase();
+  const email=document.getElementById('login-email').value.trim();
   const pass=document.getElementById('login-pass').value;
   const err=document.getElementById('login-error');
-  if(email===ADMIN_EMAIL.toLowerCase()&&pass===getCurrentPass()){
-    err.style.display='none'; showAdminPage();
-  } else {
-    err.style.display='block';
-    document.getElementById('login-pass').value='';
-  }
+  signInWithEmailAndPassword(auth,email,pass)
+    .then(()=>{ err.style.display='none'; showAdminPage(); })
+    .catch(()=>{
+      err.style.display='block';
+      document.getElementById('login-pass').value='';
+    });
 };
 window.doLogout=function(){
-  if(unsubProds){unsubProds();unsubProds=null;}
-  history.replaceState(null,'',window.location.pathname);
-  showStorePage();
+  signOut(auth).then(()=>{
+    if(unsubProds){unsubProds();unsubProds=null;}
+    history.replaceState(null,'',window.location.pathname);
+    showStorePage();
+  });
 };
+
+// حماية صفحة الأدمين: إذا لم يكن هناك تسجيل دخول فعلي في Firebase، أرجعه لصفحة الدخول
+onAuthStateChanged(auth,user=>{
+  if(window.location.hash==='#admin' && !user){ showLoginPage(); }
+});
 window.togglePass=()=>{const f=document.getElementById('login-pass');f.type=f.type==='password'?'text':'password';};
 
 // =============================================
@@ -1066,9 +1064,8 @@ window.pickCurrency=function(el){
 // =============================================
 window.togglePassField=function(id){const f=document.getElementById(id);f.type=f.type==='password'?'text':'password';};
 window.changePassword=function(){
-  const oldVal=document.getElementById('cp-old').value;
   const newVal=document.getElementById('cp-new').value;
-  const confirm=document.getElementById('cp-confirm').value;
+  const confirmVal=document.getElementById('cp-confirm').value;
   const msg=document.getElementById('cp-msg');
   const show=(text,ok)=>{
     msg.style.display='block';msg.textContent=text;
@@ -1076,13 +1073,15 @@ window.changePassword=function(){
     msg.style.color=ok?'#15803D':'#EF4444';
     msg.style.border=ok?'1px solid #86EFAC':'1px solid #FECACA';
   };
-  if(!oldVal||!newVal||!confirm){show('⚠️ يرجى ملء جميع الحقول',false);return;}
-  if(oldVal!==getCurrentPass()){show('❌ كلمة السر الحالية غير صحيحة',false);return;}
+  if(!newVal||!confirmVal){show('⚠️ يرجى ملء الحقول',false);return;}
   if(newVal.length<6){show('⚠️ كلمة السر يجب أن تكون 6 أحرف على الأقل',false);return;}
-  if(newVal!==confirm){show('❌ كلمتا السر غير متطابقتين',false);return;}
-  localStorage.setItem(PASS_KEY,newVal);
-  show('✅ تم تغيير كلمة السر!',true);
-  ['cp-old','cp-new','cp-confirm'].forEach(id=>document.getElementById(id).value='');
+  if(newVal!==confirmVal){show('❌ كلمتا السر غير متطابقتين',false);return;}
+  updatePassword(auth.currentUser,newVal)
+    .then(()=>{
+      show('✅ تم تغيير كلمة السر!',true);
+      ['cp-new','cp-confirm'].forEach(id=>document.getElementById(id).value='');
+    })
+    .catch(e=>show('❌ فشل التغيير، سجّل الدخول من جديد ثم أعد المحاولة',false));
 };
 
 // =============================================
